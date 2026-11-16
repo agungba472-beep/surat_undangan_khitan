@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Walimatul Khitan</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'teal-dark': '#0f766e',   /* Teal 700 */
+                        'teal-light': '#f0fdfa',  /* Teal 50 */
+                        'gold-main': '#d97706',   /* Amber 600 */
+                        'gold-light': '#fef3c7',  /* Amber 50 */
+                    },
+                    fontFamily: {
+                        'cursive': ['"Great Vibes"', 'cursive'],
+                        'sans': ['"Poppins"', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Animations & Layout -->
+    <style>
+        body {
+            background-color: #f0fdfa; /* teal-light */
+            overflow-x: hidden;
+        }
+
+        /* Cover Overlay Transitions */
+        #cover-page {
+            transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1), opacity 1s ease;
+        }
+        .cover-opened {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Fade-in Animation Classes */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Subtle Pattern Background */
+        .bg-pattern {
+            background-image: radial-gradient(#d97706 0.5px, transparent 0.5px), radial-gradient(#d97706 0.5px, #f0fdfa 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-opacity: 0.1;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(15, 118, 110, 0.15);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 antialiased selection:bg-teal-dark selection:text-white">
+
+    <!-- ================= COVER PAGE ================= -->
+    <div id="cover-page" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-teal-dark bg-pattern min-h-screen w-full text-center px-4">
+        <div class="glass-card rounded-3xl p-8 md:p-12 max-w-md w-full relative overflow-hidden flex flex-col items-center shadow-2xl">
+            <!-- Decorative Top -->
+            <svg class="w-16 h-16 text-gold-main mb-4 opacity-80" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+            
+            <p class="text-sm font-medium tracking-widest text-teal-dark uppercase mb-2">Walimatul Khitan</p>
+            <h1 class="font-cursive text-3xl md:text-4xl text-gold-main mb-6 mt-2 leading-tight">M. Nur Zhakaria (Zhaki)<br>&<br>M. Sidik Maulana (Sidik)</h1>
+            
+            <div class="w-16 h-[1px] bg-gold-main/50 mb-6"></div>
+
+            <p class="text-sm text-gray-600 mb-1">Kepada Yth.</p>
+            <p class="text-xs text-gray-500 mb-2">Bapak/Ibu/Saudara/i</p>
+            <!-- Dynamic Guest Name Injected Here -->
+            <h2 id="guest-name-cover" class="text-xl font-bold text-teal-dark mb-8 min-h-[30px] break-words px-2">
+                Tamu Undangan
+            </h2>
+
+            <button onclick="openInvitation()" class="group relative px-6 py-3 font-semibold text-white transition-all duration-300 bg-teal-dark rounded-full hover:bg-teal-600 hover:shadow-lg hover:shadow-teal-dark/30 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 animate-float">
+                <span class="flex items-center gap-2">
+                    <svg class="w-5 h-5 transition-transform group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M14 21v-8a2 2 0 00-2-2h-4a2 2 0 00-2 2v8"/></svg>
+                    Buka Undangan
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main id="main-content" class="w-full max-w-lg mx-auto bg-white min-h-screen shadow-2xl relative overflow-hidden">
+        
+        <!-- Section 1: Hero Intro -->
+        <section class="relative pt-24 pb-16 px-6 text-center bg-teal-light rounded-b-[3rem] shadow-sm">
+            <!-- Decorative Element -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20 pointer-events-none">
+                <svg class="absolute -top-10 -left-10 w-40 h-40 text-teal-dark" fill="currentColor" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"/></svg>
+                <svg class="absolute top-20 -right-12 w-32 h-32 text-gold-main" fill="currentColor" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"/></svg>
+            </div>
+
+            <div class="relative z-10 fade-in-section">
+                <p class="font-serif text-teal-dark text-lg italic mb-4">Bismillahirrahmanirrahim</p>
+                <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+                    Assalamu'alaikum Warahmatullahi Wabarakatuh.<br>
+                    Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan acara Walimatul Khitan putra kami:
+                </p>
+                
+                <h1 class="font-cursive text-3xl md:text-4xl text-teal-dark mb-4 mt-6">M. Nur Zhakaria (Zhaki)<br>&<br>M. Sidik Maulana (Sidik)</h1>
+                <p class="text-sm text-gray-700 font-medium mb-8">
+                    Putra dari<br>
+                    <span class="font-bold text-teal-dark">Bpk Yusuf & Ibu Ayu</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Event Details & Countdown -->
+        <section class="py-16 px-6 bg-white relative">
+            <div class="fade-in-section max-w-sm mx-auto text-center mb-10">
+                <h2 class="font-sans text-2xl font-bold text-teal-dark mb-2">Waktu & Tempat</h2>
+                <div class="w-12 h-1 bg-gold-main mx-auto rounded-full mb-6"></div>
+                <p class="text-sm text-gray-600">Acara insyaAllah akan diselenggarakan pada:</p>
+            </div>
+
+            <!-- Detail Cards -->
+            <div class="fade-in-section space-y-6">
+                <!-- Date & Time -->
+                <div class="glass-card bg-teal-light/50 p-6 rounded-2xl text-center border-t-4 border-t-teal-dark shadow-sm">
+                    <svg class="w-8 h-8 mx-auto text-gold-main mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <h3 class="font-bold text-lg text-teal-dark">Minggu, 27 Desember 2026</h3>
+                    <p class="text-sm text-gray-600 mt-1">Pukul 08.00 WIB - Selesai</p>
+                </div>
+
+                <!-- Location -->
+                <div class="glass-card bg-teal-light/50 p-6 rounded-2xl text-center border-t-4 border-t-gold-main shadow-sm">
+                    <svg class="w-8 h-8 mx-auto text-teal-dark mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    <h3 class="font-bold text-lg text-teal-dark mb-2">Kediaman Keluarga</h3>
+                    <p class="text-sm text-gray-600 mb-4">Jl. GG Bungbulang soklat RT 21 RW 06,<br>Soklat, Kec. Subang, Kabupaten Subang 41215</p>
+                    
+                    <!-- Google Maps Iframe Embed -->
+                    <div class="w-full h-48 rounded-xl overflow-hidden mb-5 shadow-inner border border-teal-dark/20">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126815.1973685601!2d107.6775685250965!3d-6.570183141505307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e693b0cf4cbf03f%3A0x301e8f1fc28ba20!2sSubang%2C%20Subang%20Regency%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                    <a href="https://maps.app.goo.gl/1RLJ7jTNuEDAeTdm7?g_st=aw" target="_blank" class="inline-flex items-center gap-2 bg-gold-main text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-yellow-600 transition-colors shadow-md">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                        Buka Peta Lokasi
+                    </a>
+                </div>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="fade-in-section mt-12">
+                <h3 class="text-center font-bold text-teal-dark mb-4">Menuju Hari Bahagia</h3>
+                <div class="flex justify-center gap-3 text-center">
+                    <div class="bg-teal-dark text-white rounded-xl p-3 w-16 shadow-lg">
+                        <div id="days" class="text-2xl font-bold font-serif">00</div>
+                        <div class="text-[10px] uppercase tracking-wider mt-1 opacity-80">Hari</div>
+                    </div>
+                    <div class="bg-teal-dark text-white rounded-xl p-3 w-16 shadow-lg">
+                        <div id="hours" class="text-2xl font-bold font-serif">00</div>
+                        <div class="text-[10px] uppercase tracking-wider mt-1 opacity-80">Jam</div>
+                    </div>
+                    <div class="bg-teal-dark text-white rounded-xl p-3 w-16 shadow-lg">
+                        <div id="minutes" class="text-2xl font-bold font-serif">00</div>
+                        <div class="text-[10px] uppercase tracking-wider mt-1 opacity-80">Menit</div>
+                    </div>
+                    <div class="bg-teal-dark text-white rounded-xl p-3 w-16 shadow-lg">
+                        <div id="seconds" class="text-2xl font-bold font-serif">00</div>
+                        <div class="text-[10px] uppercase tracking-wider mt-1 opacity-80">Detik</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Closing -->
+        <section class="py-16 px-6 bg-teal-light text-center rounded-t-[3rem] relative shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.05)]">
+            <div class="fade-in-section">
+                <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+                    Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir serta memberikan doa restu agar putra kami menjadi anak yang sholeh.
+                </p>
+                <p class="text-sm text-gray-600 mb-8">
+                    Atas kehadiran dan doa restunya, kami ucapkan terima kasih.
+                </p>
+                <p class="font-serif text-teal-dark text-lg italic mb-8">Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
+                
+                <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Kami yang berbahagia</p>
+                <h3 class="font-bold text-teal-dark text-xl">Keluarga Bpk Yusuf & Ibu Ayu</h3>
+            </div>
+            
+            <!-- Footer Watermark -->
+            <div class="mt-16 pt-6 border-t border-teal-dark/10">
+                <p class="text-[10px] text-gray-400">Dibuat dengan ❤️ untuk acara khitanan.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        // 1. Parse URL parameters to get Guest Name
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const guestNameParam = urlParams.get('to');
+            const guestNameElement = document.getElementById('guest-name-cover');
+
+            if (guestNameParam && guestNameParam.trim() !== '') {
+                // The URLSearchParams API automatically decodes '+' to spaces and handles %20
+                guestNameElement.textContent = guestNameParam;
+            } else {
+                // Default if parameter is missing or empty
+                guestNameElement.textContent = "Bapak/Ibu/Saudara/i";
+            }
+        });
+
+        // 2. Open Invitation Logic (Hide cover page)
+        function openInvitation() {
+            const coverPage = document.getElementById('cover-page');
+            coverPage.classList.add('cover-opened');
+            
+            // Allow body to scroll if needed, though main is already relative
+            window.scrollTo(0,0);
+        }
+
+        // 3. Countdown Timer Logic
+        // Set target date (Format: Year, Month (0-11), Day, Hour, Minute, Second)
+        // Set to 27 Desember 2026, 08:00:00
+        const targetDate = new Date(2026, 11, 27, 8, 0, 0).getTime(); // Month is 0-indexed, so 11 = December
+
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Add leading zero if less than 10
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }, 1000);
+
+        // 4. Scroll Animation (Intersection Observer)
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Run animation only once
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in-section');
+            fadeElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
